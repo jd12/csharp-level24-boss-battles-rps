@@ -91,15 +91,15 @@ A second consideration - and this is critical for all object-oriented problem so
 ```csharp
 public class Game50
 {
-    private const int SIZE = 50; // target score to be equaled or exceeded
-    private int bound; // number of allowable rolls to reach 50
-    private int rollCount;  // number of rolls
-    private int total;  // accumulated dice roll sum
-    private bool winner;  // game a win or loss?
+    private const int Size = 50; // target score to be equaled or exceeded
+    private int _bound; // number of allowable rolls to reach 50
+    private int _rollCount;  // number of rolls
+    private int _total;  // accumulated dice roll sum
+    private bool _winner;  // game a win or loss?
 
     public Game50(int rollBound)
     {
-        bound = rollBound; // rollBound value supplied in constructor call in driver class
+        _bound = rollBound; // rollBound value supplied in constructor call in driver class
     }
 
     public void playGame()
@@ -121,9 +121,9 @@ The simplest of the methods identified in playGame is initializeGame. The method
 ```csharp
 private void initializeGame()
 {
-  rollCount = 0;
-  total = 0;
-  winner = false;
+    _rollCount = 0;
+    _total = 0;
+    _winner = false;
 }
 ```
 
@@ -132,7 +132,7 @@ Next let's tackle the gameOver method. A game ends if rollCount equals or exceed
 ```csharp
 private bool gameOver()
 {
-    return total >= 50 || total == 13 || rollCount >= bound;
+    return _total >= 50 || _total == 13 || _rollCount >= _bound;
 }
 ```
 
@@ -142,13 +142,13 @@ Here is one solution for advancePlay. We implement it using several helper metho
 private void advancePlay()
 {
     int diceRoll = roll();  // rolls a pair of dice
-    rollCount++;
+    _rollCount++;
     incrementTotal(diceRoll);
 }
 
 private int roll()
 {
-    Random random = new Random(); // create a random instanse with a random seed
+    Random random = new Random(); // create a random instance with a random seed
     int firstDie = random.Next(1, 7); // generate an integer from 1 to 6
     int secondDie = random.Next(1, 7); // generate a separate integer from 1 to 6
     return firstDie + secondDie;
@@ -156,7 +156,7 @@ private int roll()
 
 private void incrementTotal(int curRoll)
 {
-    total = total + curRoll;
+    _total = _total + curRoll;
 }
 ```
 
@@ -178,9 +178,9 @@ We show the accumulated total for each toss of the dice by positioning a display
 ```csharp
 private void showGame()
 {
-    for (int i = 1; i <= SIZE; i++)
+    for (int i = 1; i <= Size; i++)
     {
-        if (i == total)
+        if (i == _total)
         {
             Console.Write(i);
         }
@@ -190,9 +190,9 @@ private void showGame()
         }
     }
 
-    if (total > SIZE)
+    if (_total > Size)
     {
-        Console.Write(total);
+        Console.Write(_total);
     }
     Console.WriteLine();
 }
@@ -203,12 +203,12 @@ Finally we consider the judgeAndReport method. This method is called after the m
 ```csharp
 private void judgeAndReport()
 {
-    if (total >= SIZE)
+    if (_total >= Size)
     {
-        winner = true;
+        _winner = true;
     }
-    Console.Write("Rolls made: " + rollCount + "  ");
-    Console.WriteLine("Winner?: " + winner);
+    Console.Write("Rolls made: " + _rollCount + "  ");
+    Console.WriteLine("Winner?: " + _winner);
 }
 ```
 
