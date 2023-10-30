@@ -77,9 +77,7 @@ The critical element here is the playGame method, and for its elaboration we int
  <judge and report win-loss>
 ```
 
-Note that while this idiom for implementing the play of a game is quite general, it is also not completely appropriate for all games. For Tic-Tac-Toe and other two player games for example, we would need to capture the way game play alternates between the players, and this would entail modifying the stated idiom appropriately. Still, as presented the idiom we've given is a reasonable starting place for many games, including our dice game.
-
-A second consideration - and this is critical for all object-oriented problem solving - what is the state of a game? The state of a game corresponds to the attribute profile for Game50 objects. These will be the instance variables (and constants) of the class. Here is our list:
+The critical question for all object-oriented problem solving is - what is the state of a game? The state of a game corresponds to the attribute profile for Game50 objects. These will be the instance variables (and constants) of the class. Here is our list:
 
 - The game target value - here a constant, 50
 - The bound on the number of rolls allowed to reach the target value
